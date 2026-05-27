@@ -1,0 +1,9 @@
+Korean Grammar References
+
+- 은/는 : topic particle
+- 이/가 : subject particle
+- 을/를 : object particle
+- 에/에서 : location particle
+- 아요/어요 : present polite tense
+- 았어요/었어요 : past polite tense
+- 고 싶어요 : want to do something
