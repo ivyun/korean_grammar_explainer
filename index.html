@@ -1,19 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Korean Grammar Explainer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="container">
+  <section class="hero">
     <h1>Korean Grammar Explainer</h1>
-
-    <p class="subtitle">
-      Analyze Korean grammar in a simple and beginner-friendly way.
+    <p>
+      Learn Korean grammar with simple AI-style analysis.
     </p>
+
+    <a href="#analyzer">
+      <button class="start-btn">Start Analyzing</button>
+    </a>
+  </section>
+
+  <section class="features">
+
+    <div class="card">
+      <h2>📖 Grammar Analysis</h2>
+      <p>
+        Analyze Korean particles and sentence structure.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🗣 Pronunciation Support</h2>
+      <p>
+        Understand Korean pronunciation and grammar patterns.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>✨ Beginner Friendly</h2>
+      <p>
+        Easy explanations designed for Korean learners.
+      </p>
+    </div>
+
+  </section>
+
+  <section class="analyzer" id="analyzer">
+
+    <h2>Try Korean Grammar Analysis</h2>
 
     <textarea
       id="inputSentence"
@@ -24,10 +57,23 @@
       Analyze Grammar
     </button>
 
-    <div id="result"></div>
-  </div>
+    <div class="examples">
+      <button onclick="setExample('저는 한국어를 공부해요.')">
+        저는 한국어를 공부해요.
+      </button>
 
-  <script src="script.js"></script>
+      <button onclick="setExample('학교에 가요.')">
+        학교에 가요.
+      </button>
+
+      <button onclick="setExample('김치를 먹었어요.')">
+        김치를 먹었어요.
+      </button>
+    </div>
+
+    <div id="result"></div>
+
+  </section>
 
 </body>
 </html>
