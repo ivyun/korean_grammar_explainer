@@ -1,0 +1,9 @@
+Analyze this Korean sentence:
+
+저는 한국어를 공부해요.
+
+Please explain:
+1. meaning
+2. grammar
+3. particles
+4. tense
