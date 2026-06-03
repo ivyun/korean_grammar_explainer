@@ -1,100 +1,91 @@
 function analyzeSentence() {
-
-  const sentence = document.getElementById("inputSentence").value;
+  const sentence = document.getElementById("inputSentence").value.trim();
+  const words = sentence.split(/\s+/);
 
   let result = `
     <h2>📖 Analysis Result</h2>
     <p><strong>Sentence:</strong> ${sentence}</p>
   `;
 
-  // 中文翻譯
-  if (sentence === "저는 한국어를 공부해요.") {
-    result += `
-      <p><strong>中文：</strong> 我學韓文。</p>
-    `;
-  }
+  words.forEach(word => {
+    // 은/는
+    if (word.endsWith("은") || word.endsWith("는")) {
+      result += `
+        <p>✅ <strong>${word}</strong><br>
+        「은/는」是主題助詞，表示句子的主題。<br>
+        例：나는 = 我 + 는，意思是「我呢／我是」。</p>
+      `;
+    }
 
-  if (sentence === "학교에 가요.") {
-    result += `
-      <p><strong>中文：</strong> 我去學校。</p>
-    `;
-  }
+    // 이/가，只判斷單字最後是 이 或 가，避免亂抓字中間
+    else if (word.endsWith("이") || word.endsWith("가")) {
+      result += `
+        <p>✅ <strong>${word}</strong><br>
+        「이/가」是主格助詞，表示主詞。</p>
+      `;
+    }
 
-  if (sentence === "김치를 먹었어요.") {
-    result += `
-      <p><strong>中文：</strong> 我吃了泡菜。</p>
-    `;
-  }
+    // 을/를
+    else if (word.endsWith("을") || word.endsWith("를")) {
+      result += `
+        <p>✅ <strong>${word}</strong><br>
+        「을/를」是受詞助詞，表示動作的對象。</p>
+      `;
+    }
 
-  // 은/는
-  if (sentence.includes("는") || sentence.includes("은")) {
-    result += `
-      <p>✅ <strong>은/는</strong><br>
-      主題助詞，用來表示句子的主題。</p>
-    `;
-  }
+    // 에
+    else if (word.endsWith("에")) {
+      result += `
+        <p>✅ <strong>${word}</strong><br>
+        「에」表示地點、方向或時間。</p>
+      `;
+    }
 
-  // 이/가
-  if (sentence.includes("이") || sentence.includes("가")) {
-    result += `
-      <p>✅ <strong>이/가</strong><br>
-      主格助詞，用來表示主詞。</p>
-    `;
-  }
+    // 이다
+    else if (word.endsWith("이다")) {
+      result += `
+        <p>✅ <strong>${word}</strong><br>
+        「이다」是韓文的判斷詞，相當於中文的「是」。<br>
+        例：학생이다 = 是學生。</p>
+      `;
+    }
 
-  // 을/를
-  if (sentence.includes("을") || sentence.includes("를")) {
-    result += `
-      <p>✅ <strong>을/를</strong><br>
-      受詞助詞，用來表示動作對象。</p>
-    `;
-  }
+    // 해요 / 아요 / 어요
+    else if (
+      word.endsWith("해요") ||
+      word.endsWith("아요") ||
+      word.endsWith("어요")
+    ) {
+      result += `
+        <p>✅ <strong>${word}</strong><br>
+        這是現在式禮貌語尾，常用於日常對話。</p>
+      `;
+    }
 
-  // 에 / 에서
-  if (sentence.includes("에")) {
-    result += `
-      <p>✅ <strong>에</strong><br>
-      表示地點或時間。</p>
-    `;
-  }
+    // 過去式
+    else if (
+      word.endsWith("했어요") ||
+      word.endsWith("았어요") ||
+      word.endsWith("었어요")
+    ) {
+      result += `
+        <p>✅ <strong>${word}</strong><br>
+        這是過去式禮貌語尾，表示已經做過某件事。</p>
+      `;
+    }
+  });
 
-  // 現在式
-  if (
-    sentence.includes("해요") ||
-    sentence.includes("아요") ||
-    sentence.includes("어요")
-  ) {
+  if (sentence === "나는 학생이다") {
     result += `
-      <p>✅ <strong>아요/어요/해요</strong><br>
-      現在式禮貌語尾。</p>
-    `;
-  }
-
-  // 過去式
-  if (
-    sentence.includes("았어요") ||
-    sentence.includes("었어요") ||
-    sentence.includes("했어요")
-  ) {
-    result += `
-      <p>✅ <strong>았어요/었어요</strong><br>
-      過去式禮貌語尾。</p>
-    `;
-  }
-
-  // 고 싶어요
-  if (sentence.includes("고 싶어요")) {
-    result += `
-      <p>✅ <strong>고 싶어요</strong><br>
-      表示「想做某件事」。</p>
+      <hr>
+      <p><strong>中文翻譯：</strong> 我是學生。</p>
+      <p><strong>句子結構：</strong> 나는 = 我 + 主題助詞 / 학생이다 = 是學生。</p>
     `;
   }
 
   document.getElementById("result").innerHTML = result;
 }
 
-
-// 範例句按鈕功能
 function setExample(sentence) {
   document.getElementById("inputSentence").value = sentence;
 }
